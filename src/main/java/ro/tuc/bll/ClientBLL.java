@@ -15,7 +15,6 @@ public class ClientBLL {
 
     private List<Validator<Client>> validators;
     private ClientDAO clientDAO;
-    //private ClientsView clientsView;
 
     public ClientBLL(){
         validators = new ArrayList<Validator<Client>>();

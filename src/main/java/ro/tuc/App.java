@@ -8,7 +8,7 @@ public class App {
 
         try{
             Connection connection = ConnectionFactory.getConnection();
-            System.out.println("Succesfully connected");
+            System.out.println("Successfully connected");
         }
         catch(Exception e){
             e.printStackTrace();

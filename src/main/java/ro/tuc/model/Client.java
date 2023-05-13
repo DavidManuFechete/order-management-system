@@ -8,9 +8,6 @@ public class Client {
     private String email;
     private int age;
 
-    public Client(){
-
-    }
     public Client(int id, String name, String address, String email, int age){
         super();
         this.id = id;

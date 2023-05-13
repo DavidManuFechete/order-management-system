@@ -115,23 +115,48 @@ public class AbstractDAO<T> {
 
     public T insert(T t) {
 
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("INSERT INTO orders_management.").append(type.getSimpleName()).append(" VALUES (?, ?, ?, ?, ?)");
-        String query = stringBuilder.toString();
-        Field[] fields = t.getClass().getDeclaredFields();
+        stringBuilder.append("INSERT INTO orders_management.").append(type.getSimpleName()).append(" VALUES (");
+        //String query = stringBuilder.toString();
         try{
-            for (Field field : fields){
-
+            for (Field field : t.getClass().getDeclaredFields()){
+                field.setAccessible(true);
+                try {
+                    if (field.getType().getSimpleName().equals("String")){
+                        stringBuilder.append("'").append(field.get(t)).append("',");
+                    }
+                    else{
+                        stringBuilder.append(field.get(t)).append(",");
+                    }
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+
+        String query = stringBuilder.toString();
+
+        try{
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.executeQuery();
+            connection.close();
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
         return t;
     }
 
     public T update(T t) {
-        // TODO:
+
         return t;
     }
 }
