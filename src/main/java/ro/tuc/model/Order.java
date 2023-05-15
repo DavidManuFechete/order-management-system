@@ -11,7 +11,14 @@ public class Order {
     private int quantity;
 
     public Order(int id, int clientId, int productId, int quantity){
+        super();
         this.id = id;
+        this.clientId = clientId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+    public Order(int clientId, int productId, int quantity){
+        super();
         this.clientId = clientId;
         this.productId = productId;
         this.quantity = quantity;

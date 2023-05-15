@@ -3,15 +3,30 @@ package ro.tuc.model;
 public class Product {
 
     private int id;
-    private int name;
-    private float price;
+    private String name;
+    private double price;
     private int quantity;
 
-    public Product(int id, int name, float price, int quantity){
+    public Product(int id, String name, double price, int quantity){
+        super();
         this.id = id;
         this.price = price;
         this.name = name;
         this.quantity = quantity;
+    }
+    public Product (String name, double price, int quantity){
+        super();
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getId() {
@@ -22,11 +37,11 @@ public class Product {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

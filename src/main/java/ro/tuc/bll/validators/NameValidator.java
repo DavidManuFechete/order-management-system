@@ -1,5 +1,13 @@
 package ro.tuc.bll.validators;
 
-public class NameValidator {
+import ro.tuc.model.Client;
+
+public class NameValidator implements Validator<Client>{
+
+    public void validate(Client client) {
+        if (client.getName().isEmpty() || client.getName().contains("0123456789")){
+            throw new IllegalArgumentException("Name is not valid");
+        }
+    }
 }
 
