@@ -1,10 +1,14 @@
-
 package ro.tuc.presentation;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *  The GUI for the Products window in which each button, text field and label are implemented. The Class extends JFrame
+ *  and acts as a canvas for the different components that are added onto it. It has buttons for the addition of the product,
+ *  update of it, deletion and showing.
+ */
 public class ProductsView extends JFrame {
 
     private JFrame frame;
@@ -114,6 +118,24 @@ public class ProductsView extends JFrame {
         //this.setVisible(true);
     }
 
+
+    public void showInsertMessage(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void showDeletedMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void showUpdatedMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void errorInsertMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.ERROR_MESSAGE);
+        refresh();
+    }
+
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
@@ -192,5 +214,13 @@ public class ProductsView extends JFrame {
 
     public void setInsertButton(JButton insertButton) {
         this.insertButton = insertButton;
+    }
+
+    public void refresh(){
+        textField.setText(null);
+        quantityTextField.setText(null);
+        priceTextField.setText(null);
+        deleteTextField.setText(null);
+        updateField.setText(null);
     }
 }

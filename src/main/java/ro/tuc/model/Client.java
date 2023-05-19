@@ -1,5 +1,15 @@
+/**
+ * Represents the definition of the Client object which comes and places an order that needs to be fulfilled.
+ * @param id uniquely identifies each client
+ * @param name represents the name of the client
+ * @param address represents the home address of the client
+ * @param email represents the email address of the client
+ * @param age represents how old the client is.
+ */
 package ro.tuc.model;
-
+/**
+ * Represents the definition of the Client object which comes and places an order that needs to be fulfilled.
+ */
 public class Client {
 
     private int id;
@@ -8,6 +18,9 @@ public class Client {
     private String email;
     private int age;
 
+    public Client(){
+
+    }
     public Client(int id, String name, String address, String email, int age){
         super();
         this.id = id;

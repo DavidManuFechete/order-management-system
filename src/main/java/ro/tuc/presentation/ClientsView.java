@@ -3,7 +3,11 @@ package ro.tuc.presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
+/**
+ *  Clients window implementation similar to the other 2 GUIs. It extends the JFrame class and has text fields addressing the input
+ *  for the addition/deletion/update of a client as well as buttons and a scroll pane which includes the table in which, upon pressing
+ *  the button to "Show Clients", the table gets populated with the clients present in the database.
+ */
 public class ClientsView extends JFrame {
 
 
@@ -125,6 +129,22 @@ public class ClientsView extends JFrame {
         //this.setVisible(true);
     }
 
+    public void showInsertMessage(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void showDeletedMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void showUpdatedMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void errorInsertMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.ERROR_MESSAGE);
+        refresh();
+    }
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
@@ -211,6 +231,15 @@ public class ClientsView extends JFrame {
 
     public void setInsertButton(JButton insertButton) {
         this.insertButton = insertButton;
+    }
+
+    public void refresh(){
+        textField.setText(null);
+        ageTextField.setText(null);
+        emailTextField.setText(null);
+        addressTextField.setText(null);
+        deleteTextField.setText(null);
+        updateField.setText(null);
     }
 }
 

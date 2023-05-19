@@ -3,6 +3,10 @@ package ro.tuc.presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+/**
+ *   Main GUI implementation present in this class, it just has 3 buttons that redirect the user to the other 3 specific GUIs
+ *   that are used. This GUI is always open.
+ */
 
 public class MainView extends JFrame {
 

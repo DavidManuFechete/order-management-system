@@ -3,7 +3,11 @@ package ro.tuc.presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
+/**
+ * The GUI for the Orders window in which each button, text field and label are implemented. The Class extends JFrame
+ * and acts as a canvas for the different components that are added onto it. It has buttons for the order creation and
+ * showing of all bills present in the database.
+ */
 public class OrdersView extends JFrame {
 
 
@@ -14,6 +18,7 @@ public class OrdersView extends JFrame {
 
     JButton showOrders;
     JButton insertOrderButton;
+    JScrollPane scrollPane;
 
 
     public OrdersView(){
@@ -27,7 +32,7 @@ public class OrdersView extends JFrame {
         ordersTitle.setBounds(360, 28, 96, 45);
         this.getContentPane().add(ordersTitle);
 
-        JScrollPane scrollPane = new JScrollPane();
+        scrollPane = new JScrollPane();
         scrollPane.setBounds(345, 107, 388, 280);
         this.getContentPane().add(scrollPane);
 
@@ -70,6 +75,26 @@ public class OrdersView extends JFrame {
         showOrders.setFont(new Font("Tahoma", Font.PLAIN, 13));
         showOrders.setBounds(93, 336, 111, 35);
         this.getContentPane().add(showOrders);
+
+        insertOrderButton.setFocusable(false);
+        showOrders.setFocusable(false);
+    }
+
+    public void showInsertMessage(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.INFORMATION_MESSAGE);
+        refresh();
+    }
+    public void errorInsertMsg(String msg){
+        JOptionPane.showMessageDialog(this, msg, "", JOptionPane.ERROR_MESSAGE);
+        refresh();
+    }
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(JScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
     }
 
     public void insertOrderListener(ActionListener actionListener){
@@ -125,6 +150,11 @@ public class OrdersView extends JFrame {
 
     public void setInsertOrderButton(JButton insertOrderButton) {
         this.insertOrderButton = insertOrderButton;
+    }
+    public void refresh(){
+        quantityTextField.setText(null);
+        productIdTextField.setText(null);
+        clientIdTextField.setText(null);
     }
 }
 

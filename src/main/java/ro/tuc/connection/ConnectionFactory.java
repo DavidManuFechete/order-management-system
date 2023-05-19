@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+/**
+ * Class used for establishing the connection to the database.
+ */
 
 public class ConnectionFactory {
 

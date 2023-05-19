@@ -1,7 +1,18 @@
+/**
+ * Class that describes the Order object which is placed by each user between a client and a product
+ * @param id uniquely identifies each order
+ * @param clientId that represents the client that wants to buy the product
+ * @param productId represents the item to be bought
+ * @param quantity represents the amount of that specific item.
+ */
+
 package ro.tuc.model;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Class that describes the Order object which is placed by each user between a client and a product
+ */
 
 public class Order {
 
@@ -10,6 +21,9 @@ public class Order {
     private int productId;
     private int quantity;
 
+    public Order(){
+
+    }
     public Order(int id, int clientId, int productId, int quantity){
         super();
         this.id = id;

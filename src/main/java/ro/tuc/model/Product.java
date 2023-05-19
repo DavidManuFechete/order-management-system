@@ -1,5 +1,14 @@
+/**
+ * Class that describes the Product object used in the application that represents the object that can be ordered by a client
+ * @param id that represents the unique identifier of each object
+ * @param name that represents the name of each product
+ * @param price which is a double type number that represents the cost of a product
+ * @param quantity which represents the quantity, or stock, left in the "shop" for each object.
+ */
 package ro.tuc.model;
-
+/**
+ * Class that describes the Product object used in the application that represents the object that can be ordered by a client
+ */
 public class Product {
 
     private int id;
@@ -7,6 +16,9 @@ public class Product {
     private double price;
     private int quantity;
 
+    public Product(){
+
+    }
     public Product(int id, String name, double price, int quantity){
         super();
         this.id = id;

@@ -1,5 +1,6 @@
-package ro.tuc.dao;
 
+
+package ro.tuc.dao;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
@@ -18,10 +19,12 @@ import ro.tuc.presentation.Controller;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 /**
- * Javadoc for AbstractDAO [...]
- * @param <T>
+ * Class used to define the C-R-U-D operations used for managing the database with the objects given in the application.
+ * The class creates queries based on the type of the class given and creates all the necessary queries in order for each
+ * operation to work properly no matter the given type. It takes the type and using various methods creates the specific method.
+ * It's also extended by 3 other classes, each for a given type.
+ * @param <T> represents the Class generic.
  */
 public class AbstractDAO<T> {
     protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
@@ -48,15 +51,21 @@ public class AbstractDAO<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT ").append(" * ").append(" FROM ").append(type.getSimpleName());
+        stringBuilder.append("SELECT ").append(" * ").append(" FROM orders_management.").append(type.getSimpleName());
         String query = stringBuilder.toString();
         try{
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
+            return createObjects(resultSet);
         }
         catch (SQLException e){
             LOGGER.log(Level.WARNING, type.getName() + "DAO:findAll " + e.getMessage());
+        }
+        finally{
+            ConnectionFactory.close(resultSet);
+            ConnectionFactory.close(statement);
+            ConnectionFactory.close(connection);
         }
         return null;
     }
@@ -71,7 +80,6 @@ public class AbstractDAO<T> {
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
-
             return createObjects(resultSet).get(0);
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, type.getName() + "DAO:findById " + e.getMessage());
@@ -159,7 +167,7 @@ public class AbstractDAO<T> {
         PreparedStatement statement = null;
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("INSERT INTO orders_management.").append(type.getSimpleName().toLowerCase());
-        queryBuilder.append(" VALUES(");// insert into orders_management.type VALUES(ceva, ceva, ceva, ceva, ..)
+        queryBuilder.append(" VALUES(");
         for (Field field : t.getClass().getDeclaredFields()){
             field.setAccessible(true);
             Object value;
@@ -229,7 +237,7 @@ public class AbstractDAO<T> {
         try{
             Field[] fields = t.getClass().getDeclaredFields();
             fields[0].setAccessible(true);
-            value = fields[0].get(t); // value o sa fie id u pe care vrem sa l editam
+            value = fields[0].get(t);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -260,7 +268,6 @@ public class AbstractDAO<T> {
         queryBuilder.deleteCharAt(queryBuilder.length() - 1);
         queryBuilder.append(" WHERE id = ").append(id);
         String query = queryBuilder.toString();
-        System.out.println(query);
         try{
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);

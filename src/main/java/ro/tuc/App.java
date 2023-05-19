@@ -5,6 +5,9 @@ import ro.tuc.presentation.*;
 import java.sql.Connection;
 import java.util.logging.Logger;
 
+/**
+ *  The Main which starts the whole application and creates all the views as well as the controller.
+ */
 public class App {
 
 
