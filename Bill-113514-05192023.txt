@@ -1,0 +1,3 @@
+Bill for client : David Fechete
+Product bought : Caiet
+Quantity = 10
